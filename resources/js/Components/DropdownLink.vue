@@ -1,19 +1,19 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
-
-defineProps({
-    href: {
-        type: String,
-        required: true,
-    },
+import { Link } from "@inertiajs/vue3";
+const props = defineProps({
+  toBlade: {
+    default: false,
+  },
 });
+const classes =
+  "block w-full px-4 py-2 text-left text-sm leading-5 text-offset-text hover:bg-gray-200 focus:outline-none focus:bg-gray-100 transition duration-300 ease-in-out first:rounded-t-md last:rounded-b-md";
 </script>
 
 <template>
-    <Link
-        :href="href"
-        class="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
-    >
-        <slot />
-    </Link>
+  <a v-if="toBlade" :class="classes" class="">
+    <slot/>
+  </a>
+  <Link v-else :class="classes">
+    <slot />
+  </Link>
 </template>
