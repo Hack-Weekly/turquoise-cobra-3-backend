@@ -5,7 +5,7 @@
 
     <!-- moon icon -->
     <div class="swap-on fill-current" >
-      <i-bi-moon-stars-fill @click="changeTheme('emerald')"/>
+      <i-bi-moon-stars-fill @click="changeTheme('bumblebee')"/>
     </div>
     <!-- sun icon -->
     <div class="swap-off fill-current">
@@ -17,8 +17,7 @@
 
 <script setup>
 const changeTheme = function (theme) {
-    console.log("clicked", theme);
-  const body = document.querySelector("#body");
+  const body = document.querySelector("html");
   body.dataset.theme = theme;
 };
 </script>

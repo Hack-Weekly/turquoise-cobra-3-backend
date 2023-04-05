@@ -19,10 +19,10 @@
           </label>
         </li>
         <DrawerLink displayName="Dashboard" routeName="dashboard" />
-        <NestedDrawerLink :routes="{'Course':'courses.index'}" title="Curriculum"/>
+        <!-- <NestedDrawerLink :routes="{'Course':'courses.index'}" title="Curriculum"/> -->
 
         <!-- Settings -->
-        <NestedDrawerLink :routes="{'Tags':'tags.index','Course Info Sections':'course-info-sections.index'}" title="Settings"/>
+        <!-- <NestedDrawerLink :routes="{'Tags':'tags.index','Course Info Sections':'course-info-sections.index'}" title="Settings"/> -->
 
 
         <!-- <DrawerLink routeName="settings"/> -->
