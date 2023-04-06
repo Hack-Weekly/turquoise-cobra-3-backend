@@ -3,7 +3,6 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { router } from '@inertiajs/vue3';
 import { Head } from "@inertiajs/vue3";
 import { Link } from "@inertiajs/vue3";
-import Editor from "@/Components/Editor.vue";
 
 const test = function()
 {
@@ -20,8 +19,8 @@ const test = function()
       <li><Link :href="route('dashboard')">Dashboard</Link></li>
     </template>
     <div>
-      <div class="content-card">We are here!</div>
-      <Editor />
+      <div class="content-card">You're logged in!</div>
+      <!-- <button class="btn btn-primary" @click="test">Test</button> -->
     </div>
   </AuthenticatedLayout>
 </template>

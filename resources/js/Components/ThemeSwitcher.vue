@@ -5,12 +5,12 @@
     </label>
     <ul
       tabindex="0"
-      class="dropdown-content menu shadow bg-primary text-primary-content rounded-md h-96 w-[40rem] overflow-auto "
+      class="dropdown-content menu shadow bg-primary text-primary-content rounded-md h-96 w-[38rem] overflow-auto "
     >
       <li
       v-for="theme in themes"
       :key="theme+'_theme'"
-      class="transition-all duration-200 pr-8 " @click="changeTheme(theme)"><a class="capitalize">{{theme}}</a></li>
+      class="transition-all duration-200 pr-8 hover:bg-primary-focus" @click="changeTheme(theme)"><a class="capitalize">{{theme}}</a></li>
     </ul>
   </div>
 </template>

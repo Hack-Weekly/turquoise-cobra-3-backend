@@ -1,15 +1,7 @@
 <?php
 
-use App\Http\Controllers\AccountController;
-use App\Http\Controllers\AssetController;
-use App\Http\Controllers\EntityController;
-use App\Http\Controllers\GeneralAccountController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SourceController;
-use App\Http\Controllers\TransactionController;
-use App\Models\Asset;
-use App\Models\Entity;
-use App\Models\GeneralAccount;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -40,15 +32,11 @@ Route::middleware(['auth', 'verified'])->group(function ()
 
     // - Custom Routes
 
-    // Route::apiResources([
-    //     'accounts' => AccountController::class,
-    //     'assets' => AssetController::class,
-    //     'entities' => EntityController::class,
-    //     'general_accounts' => GeneralAccountController::class,
-    //     'sources' => SourceController::class,
-    //     'transactions' => TransactionController::class,
-    // ]);
+    Route::Resources([
+        "posts" => PostController::class,
+    ]);
 });
+
 Route::middleware('auth')->group(function ()
 {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -57,5 +45,6 @@ Route::middleware('auth')->group(function ()
 });
 
 //  Log Viewer
-Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+// Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+
 require __DIR__ . '/auth.php';

@@ -257,7 +257,7 @@ const openImageModal = function () {
 };
 const uploadImage = async function () {
 
-    const response = await axios.post(route("course-info-section-image.store"), form, {
+    const response = await axios.post(route(""), form, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
