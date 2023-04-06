@@ -11,7 +11,7 @@ import { reactive } from "vue";
 
 const form = useForm({
   title: null,
-  content: "Start Your Awesome Blog Here!",
+  content: null,
   meta_data: {},
 });
 
@@ -46,7 +46,7 @@ const meta = reactive({
         </div>
         <div class="mt-6">
           <InputLabel value="Blog Content" class="text-xl underline underline-offset-8" />
-          <Editor :modalValue="form.content" />
+          <Editor v-model="form.content" />
           <InputError :message="form.errors.content" />
         </div>
         <pre>

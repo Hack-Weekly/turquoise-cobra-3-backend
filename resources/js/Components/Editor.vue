@@ -202,7 +202,14 @@
             {{ formError }}
           </p>
           <div class="modal-action">
-            <button type="button" class="btn btn-info" @click="imageModalOpen = false; formError=null">
+            <button
+              type="button"
+              class="btn btn-info"
+              @click="
+                imageModalOpen = false;
+                formError = null;
+              "
+            >
               Cancel
             </button>
             <button type="submit" class="btn btn-success">Save</button>
@@ -219,6 +226,7 @@ import Image from "@tiptap/extension-image";
 import { useEditor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
+import Placeholder from "@tiptap/extension-placeholder";
 import { onMounted, ref } from "vue";
 
 const props = defineProps(["modelValue"]);
@@ -238,6 +246,9 @@ const editor = useEditor({
     }),
     History,
     Image,
+    Placeholder.configure({
+      placeholder: "This is the start of an awesome Blog Post!!",
+    }),
   ],
   editorProps: {
     attributes: {
@@ -256,19 +267,18 @@ const openImageModal = function () {
   imageModalOpen.value = true;
 };
 const uploadImage = async function () {
-
-    const response = await axios.post(route(""), form, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    if (response.data.url) {
-      editor.value?.commands.setImage({ src: response.data.url });
-      imageModalOpen.value = false;
-      form.image = null;
-    } else {
-      formError.value = response.data.error;
-    }
+  const response = await axios.post(route(""), form, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  if (response.data.url) {
+    editor.value?.commands.setImage({ src: response.data.url });
+    imageModalOpen.value = false;
+    form.image = null;
+  } else {
+    formError.value = response.data.error;
+  }
 };
 </script>
 
@@ -307,5 +317,14 @@ h5 {
 }
 h6 {
   @apply text-lg font-bold;
+}
+/* Placeholder Plugin */
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: #6B7280;
+  content: attr(data-placeholder);
+  float: left;
+  font-weight:semi-bold;
+  height: 0;
+  pointer-events: none;
 }
 </style>
