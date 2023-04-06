@@ -11,6 +11,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        if (auth()) return true;
         return false;
     }
 
@@ -21,8 +22,6 @@ class StorePostRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 }

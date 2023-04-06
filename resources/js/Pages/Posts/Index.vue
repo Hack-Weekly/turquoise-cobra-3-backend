@@ -4,10 +4,7 @@ import { router } from '@inertiajs/vue3';
 import { Head } from "@inertiajs/vue3";
 import { Link } from "@inertiajs/vue3";
 
-const test = function()
-{
-    router.delete(route("course-info-sections.destroy", 4),{});
-}
+props = defineProps(["posts"]);
 </script>
 
 <template>

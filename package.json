@@ -5,6 +5,7 @@
         "build": "vite build && vite build --ssr"
     },
     "devDependencies": {
+        "@iconify/json": "^2.1.158",
         "@inertiajs/vue3": "^1.0.0",
         "@tailwindcss/forms": "^0.5.3",
         "@vitejs/plugin-vue": "^4.0.0",
@@ -17,15 +18,15 @@
         "unplugin-icons": "^0.14.15",
         "unplugin-vue-components": "^0.22.12",
         "vite": "^4.0.0",
-        "vue": "^3.2.41",
-        "@iconify/json": "^2.1.158"
+        "vue": "^3.2.41"
     },
     "dependencies": {
-        "daisyui": "^2.51.5",
         "@tiptap/extension-image": "^2.0.0-beta.209",
+        "@tiptap/extension-placeholder": "^2.0.2",
         "@tiptap/extension-text-align": "^2.0.0-beta.209",
         "@tiptap/starter-kit": "^2.0.0-beta.209",
         "@tiptap/vue-3": "^2.0.0-beta.209",
+        "daisyui": "^2.51.5",
         "vue-toastification": "^2.0.0-rc.5"
     }
 }
