@@ -17,7 +17,13 @@ module.exports = {
     }
   },
   plugins: [
-    require("@tailwindcss/forms"), require("daisyui")
+    require("@tailwindcss/forms"),
+    require("daisyui"),
+    function({addVariant})
+    {
+      addVariant("child", "& > *");
+      addVariant("child-hover", "& > *:hover");
+    }
   ],
   daisyui:
   {
