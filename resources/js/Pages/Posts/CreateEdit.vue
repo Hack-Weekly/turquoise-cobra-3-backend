@@ -51,8 +51,13 @@ const addTag = function () {
     if(tag.value == null || tag.value=='')
     {
         tag.error = "Please Input A Tag"
+        return
     }
-    form.tags.push(tag.value);
+    const exists = form.tags.find(tag=>tag==tag.value)
+    if(!exists)
+    {
+        form.tags.push(tag.value);
+    }
 }
 </script>
 
