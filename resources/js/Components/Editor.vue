@@ -318,6 +318,11 @@ h5 {
 h6 {
   @apply text-lg font-bold;
 }
+.ProseMirror
+{
+    @apply min-h-[50vh];
+}
+
 /* Placeholder Plugin */
 .ProseMirror p.is-editor-empty:first-child::before {
   color: #6B7280;

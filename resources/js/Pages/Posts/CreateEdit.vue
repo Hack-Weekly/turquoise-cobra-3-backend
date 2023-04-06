@@ -13,8 +13,10 @@ const form = useForm({
   title: null,
   content: null,
   meta_data: [],
+  tags:[]
 });
 
+// Meta Data
 const meta = reactive({
   attribute: null,
   value: null,
@@ -24,7 +26,7 @@ const meta = reactive({
   },
 });
 
-const addMetaTag = function () {
+const addMetaData = function () {
   if (meta.attribute == null || meta.attribute == "") {
     meta.errors.attribute = "Please Enter An Attribute";
     return;
@@ -38,6 +40,20 @@ const addMetaTag = function () {
     form.meta_data.push({ attribute: meta.attribute, value: meta.attribute });
   }
 };
+
+// Content Tag
+const tag = reactive({
+    value:null,
+    error:null
+})
+
+const addTag = function () {
+    if(tag.value == null || tag.value=='')
+    {
+        tag.error = "Please Input A Tag"
+    }
+    form.tags.push(tag.value);
+}
 </script>
 
 <template>
@@ -64,20 +80,36 @@ const addMetaTag = function () {
           <Editor v-model="form.content" />
           <InputError :message="form.errors.content" />
         </div>
-        <pre>
-            {{ form.title }}
-            {{ form.content }}
-            {{ form.meta }}
-        </pre>
       </div>
       <div class="w-3/12">
         <div class="content-card">
-          <InputLabel value="Meta Tags" class="text-xl underline underline-offset-8" />
+          <InputLabel value="Meta Data" class="text-xl underline underline-offset-8" />
           <TextInput v-model="meta.attribute" placeholder="Attribute" />
           <InputError :message="meta.errors.attribute" />
           <TextInput v-model="meta.value" placeholder="Value" class="mt-4" />
           <InputError :message="meta.errors.value" />
-          <button class="btn btn-primary w-full mt-4 btn-sm" @click="addMetaTag">
+          <button class="btn btn-primary w-full mt-4 btn-sm" @click="addMetaData">
+            Add Tag
+          </button>
+          <!-- <hr class="border-primary mt-4 mb-2 p-0"/> -->
+          <InputLabel
+            value="Existing Meta Tags"
+            class="text-xl underline underline-offset-8 mt-4 mb-6"
+          />
+          <ol>
+            <li v-for="(data, index) in form.meta_data" :key="`tag${index}`">
+              <div class="pl-2 mb-3">
+                <p>Attribute : {{ data.attribute }}</p>
+                <p>Value : {{ data.value }}</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <div class="content-card">
+          <InputLabel value="Topic Tags" class="text-xl underline underline-offset-8" />
+          <TextInput v-model="tag.value" placeholder="Value" class="mt-4" />
+          <InputError :message="tag.error"/>
+          <button class="btn btn-primary w-full mt-4 btn-sm" @click="addTag">
             Add Tag
           </button>
           <!-- <hr class="border-primary mt-4 mb-2 p-0"/> -->
@@ -94,7 +126,6 @@ const addMetaTag = function () {
             </li>
           </ol>
         </div>
-        <div class="content-card"></div>
       </div>
     </div>
   </AuthenticatedLayout>
