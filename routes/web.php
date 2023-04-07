@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TagsController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -35,6 +36,7 @@ Route::middleware(['auth', 'verified'])->group(function ()
     Route::Resources([
         "posts" => PostController::class,
     ]);
+    Route::apiResource("tags", TagsController::class);
 });
 
 Route::middleware('auth')->group(function ()

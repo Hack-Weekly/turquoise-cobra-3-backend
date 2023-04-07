@@ -20,6 +20,7 @@
         </li>
         <DrawerLink displayName="Dashboard" routeName="dashboard" />
         <NestedDrawerLink :routes="{'All Blogs':'posts.index', 'Add Blog' : 'posts.create'}" title="Blogs"/>
+        <DrawerLink displayName="Tag Management" routeName="tags.index" />
 
         <!-- Settings -->
         <!-- <NestedDrawerLink :routes="{'Tags':'tags.index','Course Info Sections':'course-info-sections.index'}" title="Settings"/> -->

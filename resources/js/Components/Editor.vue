@@ -178,7 +178,7 @@
         </button>
       </div>
     </div>
-    <EditorContent :editor="editor" />
+    <EditorContent :editor="editor"/>
 
     <!-- Image Upload Modal -->
     <div class="modal" :class="{ 'modal-open': imageModalOpen }">
@@ -252,7 +252,7 @@ const editor = useEditor({
   ],
   editorProps: {
     attributes: {
-      class: "pb-4 pt-6 px-4 focus:outline-none border border-primary border-t-0",
+      class: "pb-4 pt-6 px-4 focus:outline-none border border-primary border-t-0 rounded-b-md",
     },
   },
 });
