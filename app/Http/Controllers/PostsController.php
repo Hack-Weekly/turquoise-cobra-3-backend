@@ -22,7 +22,7 @@ class PostsController extends Controller
     public function index()
     {
         return Inertia::render("Posts/Index", [
-            "posts" => Post::orderBy("created_at", "desc")->get()
+            "posts" => Post::orderBy("created_at", "desc")->with("user:id,name,avatar_thumb")->get()
         ]);
     }
 

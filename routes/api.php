@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\PostsController;
+use App\Http\Controllers\Api\TagsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request)
+// {
+//     return $request->user();
+// });
+
+Route::apiResource('posts', PostsController::class)->only("index", "show");
+Route::apiResource('tags', TagsController::class)->only("index", "show");

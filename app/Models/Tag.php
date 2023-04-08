@@ -28,6 +28,15 @@ class Tag extends Model
     // * Relationships
     protected $with = [];
 
+    // public function posts()
+    // {
+    //     return $this->hasManyThrough(Posts::class, "tags_posts");
+    // }
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, "tags_posts");
+    }
+
     // * Methods
 
 }

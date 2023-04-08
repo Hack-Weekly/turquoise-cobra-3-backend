@@ -60,10 +60,14 @@ const deletePost = function () {
           <tbody>
             <!-- row 1 -->
             <tr v-for="post in posts" :key="`post-${post.id}`">
-              <th class="">
+              <th>
                 <div class="flex items-center space-x-3">
                   <div class="avatar">
-                    <div class="mask mask-squircle w-12 h-12">
+                    <i-radix-icons-avatar
+                      class="text-[2.5rem]"
+                      v-if="post.user.avatar_thumb === null"
+                    />
+                    <div class="mask mask-circle w-12 h-12" v-else>
                       <UserAvatar :src="post.user.avatar_thumb" size="50" />
                     </div>
                   </div>

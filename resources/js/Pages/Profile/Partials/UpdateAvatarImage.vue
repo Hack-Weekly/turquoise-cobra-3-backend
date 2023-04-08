@@ -45,7 +45,7 @@ const uploadImage = async function () {
       <div v-if="avatar === null">
         <i-radix-icons-avatar class="text-[100px]" />
       </div>
-      <div>
+      <div v-else>
         <UserAvatar :src="avatar" size="200"/>
       </div>
     </div>

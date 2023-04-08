@@ -26,7 +26,7 @@ class Post extends Model
     // * Mutators
 
     // * Relationships
-    protected $with = ["tags", "user"];
+    protected $with = [];
 
     public function tags()
     {
