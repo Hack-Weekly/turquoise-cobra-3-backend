@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagsController;
 use Illuminate\Support\Facades\Route;
@@ -34,8 +34,11 @@ Route::middleware(['auth', 'verified'])->group(function ()
     // - Custom Routes
 
     Route::Resources([
-        "posts" => PostController::class,
+        "posts" => PostsController::class,
     ]);
+    Route::post("posts/images", [PostsController::class, "saveImage"])->name("posts.saveImage");
+    Route::put("posts/flipPublishStatus/{post}", [PostsController::class, "flipPublishStatus"])->name("posts.flipPublishStatus");
+
     Route::apiResource("tags", TagsController::class);
 });
 

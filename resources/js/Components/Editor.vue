@@ -267,7 +267,7 @@ const openImageModal = function () {
   imageModalOpen.value = true;
 };
 const uploadImage = async function () {
-  const response = await axios.post(route(""), form, {
+  const response = await axios.post(route("posts.saveImage"), form, {
     headers: {
       "Content-Type": "multipart/form-data",
     },

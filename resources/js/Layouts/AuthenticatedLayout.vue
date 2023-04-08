@@ -128,4 +128,6 @@ const showingNavigationDropdown = ref(false);
   </div>
 </template>
 
-<style></style>
+<style>
+
+</style>
