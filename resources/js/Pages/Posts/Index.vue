@@ -5,6 +5,7 @@ import { Head } from "@inertiajs/vue3";
 import { Link } from "@inertiajs/vue3";
 import { ref } from "vue";
 import { useToast } from "vue-toastification";
+import UserAvatar from "@/Components/UserAvatar.vue";
 
 const props = defineProps(["posts"]);
 const toast = useToast();
@@ -59,7 +60,18 @@ const deletePost = function () {
           <tbody>
             <!-- row 1 -->
             <tr v-for="post in posts" :key="`post-${post.id}`">
-              <th>{{ post.user.name }}</th>
+              <th class="">
+                <div class="flex items-center space-x-3">
+                  <div class="avatar">
+                    <div class="mask mask-squircle w-12 h-12">
+                      <UserAvatar :src="post.user.avatar" size="50" />
+                    </div>
+                  </div>
+                  <div>
+                    <div class="font-bold">{{ post.user.name }}</div>
+                  </div>
+                </div>
+              </th>
               <td>{{ post.title }}</td>
               <td>
                 <button
