@@ -26,11 +26,15 @@ class Post extends Model
     // * Mutators
 
     // * Relationships
-    protected $with = ["tags"];
+    protected $with = ["tags", "user"];
 
     public function tags()
     {
         return $this->belongsToMany(Tag::class, "tags_posts");
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
     // * Methods
 

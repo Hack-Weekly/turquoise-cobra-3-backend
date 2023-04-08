@@ -50,8 +50,8 @@ const deletePost = function () {
           <!-- head -->
           <thead>
             <tr class="w-full">
-              <th class="w-1/12">User</th>
-              <th class="w-9/12">Title</th>
+              <th class="w-2/12">User</th>
+              <th class="w-8/12">Title</th>
               <th class="w-1/12">Status</th>
               <th class="w-1/12">Actions</th>
             </tr>
@@ -59,7 +59,7 @@ const deletePost = function () {
           <tbody>
             <!-- row 1 -->
             <tr v-for="post in posts" :key="`post-${post.id}`">
-              <th>{{ post.user_id }}</th>
+              <th>{{ post.user.name }}</th>
               <td>{{ post.title }}</td>
               <td>
                 <button
