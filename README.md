@@ -5,7 +5,7 @@
 ## Steps
 - Clone this repo
 - Run `php artisan sail:install`
-    - Select postgress and hit enter
+    - Select `pgsql` (option 1) and hit enter
 - run `./vendor/bin/sail up -d`
 - run `php artisan migrate` to setup the database
 - Goto Localhost and check if the site is working, It should be a laravel welcome page.
