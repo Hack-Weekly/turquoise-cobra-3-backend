@@ -88,7 +88,7 @@ class ProfileController extends Controller
 
             // Resize and Store Image
             $path = "user-avatars/thumbnails/";
-            $savedPath = resizeSaveImage($request->image, $path, null, 100);
+            $savedPath = resizeAndSaveImage($request->image, $path, null, 100, "webp");
             $user->avatar_thumb = $baseUrl . $savedPath;
             $user->save();
         }

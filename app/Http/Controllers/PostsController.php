@@ -184,9 +184,11 @@ class PostsController extends Controller
                     "image.max" => "Maximum Allowed Image Size : 2048 Kilobyte"
                 ]
             );
-            $path = $request->image->storePublicly('blog-images', "public");
+            $baseUrl = URL::to('/') . "/storage/";
+            $path = "blog-images/";
+            $savedPath = encodeAndSaveImage($request->image, $path, "webp");
             DB::table("blog_images")->insert([
-                "image_url" => $path
+                "image_url" => $baseUrl . $savedPath
             ]);
         }
         catch (\Exception $e)
@@ -196,7 +198,7 @@ class PostsController extends Controller
             ]);
         }
         return response()->json([
-            'url' => URL::to('/') . "/storage/" . $path
+            'url' => $baseUrl . $savedPath
         ]);
     }
 

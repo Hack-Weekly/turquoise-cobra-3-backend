@@ -5,15 +5,24 @@ use Image;
 
 if (!function_exists('interventionSaveImage'))
 {
-    function resizeSaveImage($image, $path, $width, $height)
+    function resizeAndSaveImage($image, $path, $width, $height, $encoding)
     {
-        $resize = Image::make($image)->resize($width, $height, function ($constraint)
+        $resized = Image::make($image)->resize($width, $height, function ($constraint)
         {
             $constraint->aspectRatio();
-        })->encode("webp");
-        $hash = md5($resize->__toString());
-        $savePath = $path . "$hash.webp";
-        Storage::put("public/" . $path, $resize);
+        })->encode($encoding);
+        return saveImage($resized, $path, $encoding);
+    }
+    function encodeAndSaveImage($image, $path, $encoding)
+    {
+        $encoded = Image::make($image)->encode($encoding);
+        return saveImage($encoded, $path, $encoding);
+    }
+    function saveImage($image, $path, $encoding)
+    {
+        $hash = md5($image->__toString()) . strtotime("now");
+        $savePath = $path . "$hash." . $encoding;
+        Storage::put("public/" . $savePath, $image);
         return $savePath;
     }
 }
