@@ -25,6 +25,7 @@ const uploadImage = async function () {
   if (response.data.url) {
     form.image = null;
     avatar.value = response.data.url;
+    toast.success("Avatar Updated Successfully");
   } else {
     toast.error(response.data.error);
     console.log(response.data.error);

@@ -9,9 +9,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 use Inertia\Response;
+
 
 class ProfileController extends Controller
 {
@@ -70,18 +72,24 @@ class ProfileController extends Controller
         {
             $request->validate(
                 [
-                    "image" => "required|mimes:jpg,jpeg,png|image|max:2048"
+                    "image" => "required|mimes:webp,jpg,jpeg,png|image|max:2048"
                 ],
                 [
                     "image.required" => "Please Select An Image To Upload",
-                    "image.mimes" => "Only .jpg,.jpeg or .png files allowed",
+                    "image.mimes" => "Only .webp,.jpg,.jpeg or .png files allowed",
                     "image.image" => "Only Images Allowed",
                     "image.max" => "Maximum Allowed Image Size : 2048 Kilobyte"
                 ]
             );
+            // Store Full Image
+            $baseUrl = URL::to('/') . "/storage/";
             $path = $request->image->storePublicly('user-avatars', "public");
-            $path = URL::to('/') . "/storage/" . $path;
-            $user->avatar = $path;
+            $user->avatar = $baseUrl . $path;
+
+            // Resize and Store Image
+            $path = "user-avatars/thumbnails/";
+            $savedPath = resizeSaveImage($request->image, $path, null, 100);
+            $user->avatar_thumb = $baseUrl . $savedPath;
             $user->save();
         }
         catch (\Exception $e)

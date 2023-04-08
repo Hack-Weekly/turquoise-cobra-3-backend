@@ -64,7 +64,7 @@ const deletePost = function () {
                 <div class="flex items-center space-x-3">
                   <div class="avatar">
                     <div class="mask mask-squircle w-12 h-12">
-                      <UserAvatar :src="post.user.avatar" size="50" />
+                      <UserAvatar :src="post.user.avatar_thumb" size="50" />
                     </div>
                   </div>
                   <div>
