@@ -6,7 +6,7 @@
 ## Steps
 - Clone this repo
 - `cd` into the folder
-- Run `composer:install`
+- Run `composer install`
 - Run `npm run dev`
 - Run `php artisan sail:install`
     - Select `pgsql` (option 1) and hit enter
