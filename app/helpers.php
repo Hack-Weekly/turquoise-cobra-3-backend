@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Storage;
-use Image;
+use Intervention\Image;
 
 if (!function_exists('interventionSaveImage'))
 {
