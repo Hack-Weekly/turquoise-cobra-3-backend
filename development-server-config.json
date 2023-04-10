@@ -1,0 +1,11 @@
+[
+  {
+    "name": "bhavil-test-server",
+    "ip": "3.108.146.148",
+    "username": "ubuntu",
+    "port": "22",
+    "beforeHooks": "",
+    "afterHooks": "",
+    "path": "/var/www/turquoise-blog"
+  }
+]
