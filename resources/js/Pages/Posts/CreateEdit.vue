@@ -123,9 +123,6 @@ const addTag = function () {
       <li><a :href="route('home')">Home</a></li>
       <li><Link :href="route('dashboard')">Dashboard</Link></li>
     </template>
-    <pre>
-        {{ form.content }}
-    </pre>
     <h1 class="text-3xl underline underline-offset-8 text-center mb-8">
       Create A New Blog Post
     </h1>

@@ -21,7 +21,6 @@ const test = function()
     </template>
     <div>
       <div class="content-card">We are here!</div>
-      <Editor />
     </div>
   </AuthenticatedLayout>
 </template>
