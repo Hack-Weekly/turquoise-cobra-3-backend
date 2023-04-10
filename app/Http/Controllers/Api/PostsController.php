@@ -9,15 +9,16 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts =  Post::with("user:id,name,avatar_thumb")->orderBy("created_at", "desc")->get();
+        $posts =  Post::with("user:id,name,avatar_thumb")->with("tags:id,tag")->orderBy("created_at", "desc")->get();
+        $posts->makeHidden(["id", "content", "user_id"]);
         return response()->json([
             "posts" => $posts
         ]);
     }
-    public function show(string $id)
+    public function show(string $slug)
     {
         return response()->json([
-            "post" => Post::where("id", $id)->with("user:id,name,avatar")->with("tags:id,tag")->get()
+            "post" => Post::where("slug", $slug)->with("user:id,name,avatar")->with("tags:id,tag")->get()
         ]);
     }
 }

@@ -15,8 +15,9 @@ const toast = useToast();
 const props = defineProps(["tags", "post", "mode"]);
 // console.log(props.post);
 const form = useForm({
+  mode: props.mode,
   title: null,
-  hero : null,
+  hero: null,
   content: null,
   meta_data: [],
   tags: [],
@@ -27,6 +28,7 @@ if (props.mode == "edit") {
   form.content = props.post.content;
   form.meta_data = JSON.parse(props.post.meta_data);
   form.is_published = props.post.is_published;
+  console.log(props.post);
   props.post.tags.forEach((tag) => {
     form.tags.push(tag.id);
   });
@@ -34,12 +36,11 @@ if (props.mode == "edit") {
 }
 
 const heroURL = computed(() => {
-    if(form.hero!=null)
-    {
-        return URL.createObjectURL(form.hero);
-    }
-    return null;
-})
+  if (form.hero != null) {
+    return URL.createObjectURL(form.hero);
+  }
+  return null;
+});
 
 const savePost = function () {
   form.post(route("posts.store"), {
@@ -145,7 +146,7 @@ const addTag = function () {
             @input="form.hero = $event.target.files[0]"
           />
           <InputError :message="form.errors.hero" />
-          <img v-if="heroURL" :src="heroURL" class="my-6"/>
+          <img v-if="heroURL" :src="heroURL" class="my-6" />
         </div>
         <div class="mt-6">
           <InputLabel value="Blog Content" class="text-xl underline underline-offset-8" />
@@ -192,7 +193,7 @@ const addTag = function () {
           </button>
           <!-- <hr class="border-primary mt-4 mb-2 p-0"/> -->
           <InputLabel
-            value="Existing Meta Tags"
+            value="Existing Topic Tags"
             class="text-xl underline underline-offset-8 mt-4 mb-6"
           />
           <ol>

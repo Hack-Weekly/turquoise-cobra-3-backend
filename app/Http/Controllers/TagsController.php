@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class TagsController extends Controller
 {
@@ -32,7 +32,8 @@ class TagsController extends Controller
         try
         {
             Tag::create([
-                "tag" => $request->tag
+                "tag" => $request->tag,
+                "slug" => Str::slug($request->tag)
             ]);
         }
         catch (\Exception $e)
@@ -57,7 +58,10 @@ class TagsController extends Controller
                 ]
 
             );
-            $tag->update(["tag" => $request->tag]);
+            $tag->update([
+                "tag" => $request->tag,
+                "slug" => Str::slug($request->tag)
+            ]);
         }
         catch (\Exception $e)
         {

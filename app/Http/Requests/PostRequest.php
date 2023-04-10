@@ -22,13 +22,17 @@ class PostRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             "title" => "required|string",
-            "hero" => "required|mimes:webp,jpg,jpeg,png|image|max:2048",
             "content" => "required",
-            "meta_data" => "array|min:1",
-            "tags" => "array|min:1",
         ];
+        if ($this->mode == 'add')
+        {
+            $rules["hero"] = "required|mimes:webp,jpg,jpeg,png|image|max:2048";
+            $rules["meta_data"] = "array|min:1";
+            $rules["tags"] = "array|min:1";
+        }
+        return $rules;
     }
     public function messages(): array
     {

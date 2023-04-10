@@ -21,8 +21,9 @@ class PostsController extends Controller
      */
     public function index()
     {
+        $posts = Post::orderBy("created_at", "desc")->with("user:id,name,avatar_thumb")->with("tags")->get();
         return Inertia::render("Posts/Index", [
-            "posts" => Post::orderBy("created_at", "desc")->with("user:id,name,avatar_thumb")->get()
+            "posts" => $posts
         ]);
     }
 
@@ -94,10 +95,11 @@ class PostsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
+        $post->load("tags");
         return Inertia::render("Posts/CreateEdit", [
-            "post" => Post::find($id),
+            "post" => $post,
             "mode" => "edit",
             "tags" => Tag::all()
         ]);

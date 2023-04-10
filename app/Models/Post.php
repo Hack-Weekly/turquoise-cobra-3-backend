@@ -22,7 +22,11 @@ class Post extends Model
     protected $casts = [];
 
     // * Accessors
-
+    protected $appends = ["description"];
+    public function getDescriptionAttribute()
+    {
+        return substr(preg_replace("/<img[^>]+\>/i", "", $this->content), 0, 150);
+    }
     // * Mutators
 
     // * Relationships
