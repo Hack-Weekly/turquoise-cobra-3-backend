@@ -13,10 +13,10 @@ class TagsController extends Controller
             "tags" => Tag::select("id", "tag")->orderBy("tag", "desc")->get()
         ]);
     }
-    public function show(string $id)
+    public function show(string $slug)
     {
         return response()->json([
-            "tag" => Tag::where("id", $id)->with("posts:id,title")->get()
+            "tag" => Tag::where("slug", $slug)->with("posts:id,title")->get()
         ]);
     }
 }
