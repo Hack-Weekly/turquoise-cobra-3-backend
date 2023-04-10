@@ -1,10 +1,10 @@
 #TEST123
-name: Deploy Application
+name: Deploy Application Dev Channel
 
 on:
   push:
     branches:
-      - main
+      - xyz
 
 jobs:
   create-deployment-artifacts:

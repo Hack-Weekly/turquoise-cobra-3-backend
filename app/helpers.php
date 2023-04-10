@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image;
 
 if (!function_exists('interventionSaveImage'))
 {
@@ -10,12 +9,12 @@ if (!function_exists('interventionSaveImage'))
         $resized = Image::make($image)->resize($width, $height, function ($constraint)
         {
             $constraint->aspectRatio();
-        })->encode($encoding);
+        })->encode($encoding, 50);
         return saveImage($resized, $path, $encoding);
     }
     function encodeAndSaveImage($image, $path, $encoding)
     {
-        $encoded = Image::make($image)->encode($encoding);
+        $encoded = Image::make($image)->encode($encoding, 50);
         return saveImage($encoded, $path, $encoding);
     }
     function saveImage($image, $path, $encoding)

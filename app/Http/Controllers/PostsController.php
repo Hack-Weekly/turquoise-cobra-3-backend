@@ -44,10 +44,17 @@ class PostsController extends Controller
     {
         try
         {
+
+            $baseUrl = URL::to('/') . "/storage/";
+            $path = "blog-hero-images/";
+            $savedPath = encodeAndSaveImage($request->hero, $path, "webp");
+            $heroUrl = $baseUrl . $savedPath;
+
             DB::beginTransaction();
             $post = Post::create([
                 "user_id" => auth()->user()->id,
                 "title" => $request->title,
+                "hero_url" => $heroUrl,
                 "content" => $request->content,
                 "meta_data" => json_encode($request->meta_data),
                 "slug" => Str::slug($request->title),
