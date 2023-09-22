@@ -1,32 +1,31 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build && vite build --ssr"
-    },
-    "devDependencies": {
-        "@iconify/json": "^2.1.158",
-        "@inertiajs/vue3": "^1.0.0",
-        "@tailwindcss/forms": "^0.5.3",
-        "@vitejs/plugin-vue": "^4.0.0",
-        "@vue/server-renderer": "^3.2.31",
-        "autoprefixer": "^10.4.14",
-        "axios": "^1.1.2",
-        "laravel-vite-plugin": "^0.7.2",
-        "postcss": "^8.4.21",
-        "tailwindcss": "^3.3.1",
-        "unplugin-icons": "^0.14.15",
-        "unplugin-vue-components": "^0.22.12",
-        "vite": "^4.0.0",
-        "vue": "^3.2.41"
-    },
-    "dependencies": {
-        "@tiptap/extension-image": "^2.0.0-beta.209",
-        "@tiptap/extension-placeholder": "^2.0.2",
-        "@tiptap/extension-text-align": "^2.0.0-beta.209",
-        "@tiptap/starter-kit": "^2.0.0-beta.209",
-        "@tiptap/vue-3": "^2.0.0-beta.209",
-        "daisyui": "^2.51.5",
-        "vue-toastification": "^2.0.0-rc.5"
-    }
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && vite build --ssr"
+  },
+  "devDependencies": {
+    "@inertiajs/vue3": "^1.0.0",
+    "@tailwindcss/forms": "^0.5.3",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vue/server-renderer": "^3.2.31",
+    "autoprefixer": "^10.4.14",
+    "axios": "^1.1.2",
+    "laravel-vite-plugin": "^0.7.2",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.3.3",
+    "unplugin-icons": "^0.17.0",
+    "unplugin-vue-components": "^0.25.2",
+    "vite": "^4.0.0",
+    "vue": "^3.3.4"
+  },
+  "dependencies": {
+    "@iconify/json": "^2.2.119",
+    "@tiptap/extension-image": "^2.1.11",
+    "@tiptap/extension-placeholder": "^2.1.11",
+    "@tiptap/extension-text-align": "^2.1.11",
+    "@tiptap/starter-kit": "^2.1.11",
+    "@tiptap/vue-3": "^2.1.11",
+    "daisyui": "^3.7.7"
+  }
 }
