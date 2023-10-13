@@ -39,7 +39,9 @@ Route::middleware(['auth', 'verified'])->group(function ()
     Route::post("posts/images", [PostsController::class, "saveImage"])->name("posts.saveImage");
     Route::put("posts/flipPublishStatus/{post}", [PostsController::class, "flipPublishStatus"])->name("posts.flipPublishStatus");
 
-    Route::apiResource("tags", TagsController::class);
+    Route::apiResource("events", \App\Http\Controllers\EventController::class);
+    Route::apiResource("locations", \App\Http\Controllers\LocationController::class);
+    Route::apiResource("scheme-plans", \App\Http\Controllers\SchemePlanController::class);
 });
 
 Route::middleware('auth')->group(function ()

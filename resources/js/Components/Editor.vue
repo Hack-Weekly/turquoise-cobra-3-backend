@@ -1,6 +1,6 @@
 <template>
   <div class="h-auto p-0" v-if="editor">
-    <div class="menu">
+    <div class="">
       <div
         class="menu-row text-left bg-primary text-primary-content rounded-t-md flex flex-row text-xl"
       >

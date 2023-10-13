@@ -1,12 +1,12 @@
 <!-- Your Java Script Here -->
 <script setup>
-import { useForm } from "@inertiajs/vue3";
-import { ref } from "vue";
-import { useToast } from "vue-toastification";
+import {router, useForm} from "@inertiajs/vue3";
+import {ref} from "vue";
+import {useToast} from "vue-toastification";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
-import { router } from '@inertiajs/vue3';
+import SelectInputGroup from "@/Components/SelectInputGroup.vue";
 
 const props = defineProps(["tag"]);
 const toast = useToast();
@@ -14,9 +14,11 @@ const toast = useToast();
 // - Edit Tag
 const form = useForm({
   tag: props.tag.tag,
+  type: props.tag.type
 });
 const editModalOpen = ref(false);
-const editTag = function () {
+const editTag = function ()
+{
   form.patch(route("tags.update", props.tag.id), {
     onSuccess: () => (editModalOpen.value = false),
     onError: (e) => toast.error(e[0]),
@@ -25,7 +27,8 @@ const editTag = function () {
 
 // - Delete Tag
 const deleteModalOpen = ref(false);
-const deleteTag = function () {
+const deleteTag = function ()
+{
   router.delete(route("tags.destroy", props.tag.id), {
     onSuccess: () => (deleteModalOpen.value = false),
     onError: (e) => toast.error(e[0]),
@@ -36,8 +39,8 @@ const deleteTag = function () {
 <template>
   <div class="badge badge-primary p-4 text-lg rounded-md mr-2">
     {{ tag.tag }}
-    <i-mdi-edit class="text-md ml-3 mr-1 cursor-pointer" @click="editModalOpen = true" />
-    <i-mdi-close class="text-md cursor-pointer" @click="deleteModalOpen = true" />
+    <i-mdi-edit class="text-md ml-3 mr-1 cursor-pointer" @click="editModalOpen = true"/>
+    <i-mdi-close class="text-md cursor-pointer" @click="deleteModalOpen = true"/>
   </div>
 
   <!-- Edit Modal -->
@@ -46,7 +49,7 @@ const deleteTag = function () {
       <h3 class="font-bold text-xl text-base-content text-center mb-8">Edit Tag</h3>
       <form @submit.prevent="editTag">
         <div>
-          <InputLabel for="tag" value="Tag" />
+          <InputLabel for="tag" value="Tag"/>
           <TextInput
             id="tag"
             type="text"
@@ -55,8 +58,19 @@ const deleteTag = function () {
             autofocus
             autocomplete="tag"
           />
-
-          <InputError class="mt-2" :message="form.errors.tag" />
+          <InputError class="mt-2" :message="form.errors.tag"/>
+          <SelectInputGroup
+            id="type"
+            v-model="form.type"
+            required
+            label="Tag Type"
+          >
+            <option value="" selected disabled>Select</option>
+            <option value="event">Event</option>
+            <option value="location">Location</option>
+            <option value="scheme_plan">Scheme / Plan</option>
+          </SelectInputGroup>
+          <InputError class="mt-2" :message="form.errors.type"/>
         </div>
         <div class="modal-action">
           <button class="btn btn-info" @click="editModalOpen = false">Cancel</button>

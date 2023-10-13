@@ -26,6 +26,7 @@
     "@tiptap/extension-text-align": "^2.1.11",
     "@tiptap/starter-kit": "^2.1.11",
     "@tiptap/vue-3": "^2.1.11",
-    "daisyui": "^3.7.7"
+    "daisyui": "^3.7.7",
+    "vue-toastification": "next"
   }
 }

@@ -3,25 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
+use App\Models\Event;
+use App\Models\Location;
 use App\Models\Post;
-use App\Models\Tag;
+use App\Models\SchemePlan;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
+use Inertia\Response;
 
 class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Response
     {
-        $posts = Post::orderBy("created_at", "desc")->with("user:id,name,avatar_thumb")->with("tags")->get();
+        $posts = Post::orderBy("created_at", "desc")->with("user:id,name,avatar_thumb")->with("events","locations","schemePlans")->get();
         return Inertia::render("Posts/Index", [
             "posts" => $posts
         ]);
@@ -30,22 +34,24 @@ class PostsController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Response
     {
         return Inertia::render("Posts/CreateEdit", [
             "mode" => "create",
-            "tags" => Tag::all()
+            "events" => Event::all(),
+            "locations" => Location::all(),
+            "scheme_plans" => SchemePlan::all(),
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PostRequest $request)
+    public function store(PostRequest $request): \Illuminate\Http\RedirectResponse
     {
+
         try
         {
-
             $baseUrl = URL::to('/') . "/storage/";
             $path = "blog-hero-images/";
             $savedPath = encodeAndSaveImage($request->hero, $path, "webp");
@@ -64,10 +70,10 @@ class PostsController extends Controller
             $tagsPosts = [];
             foreach ($request->tags as $tag)
             {
-                array_push($tagsPosts, [
+                $tagsPosts[] = [
                     "tag_id" => $tag,
                     "post_id" => $post->id,
-                ]);
+                ];
             }
             DB::table("tags_posts")->insert($tagsPosts);
             DB::commit();
@@ -108,7 +114,7 @@ class PostsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PostRequest $request, string $id)
+    public function update(PostRequest $request, string $id): RedirectResponse
     {
         try
         {
@@ -178,7 +184,7 @@ class PostsController extends Controller
         return Redirect::route('posts.index');
     }
 
-    public function saveImage(Request $request)
+    public function saveImage(Request $request): \Illuminate\Http\JsonResponse
     {
         try
         {

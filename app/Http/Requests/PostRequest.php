@@ -4,6 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property mixed $hero
+ * @property mixed $title
+ * @property mixed $meta_data
+ */
 class PostRequest extends FormRequest
 {
     /**
@@ -26,7 +31,7 @@ class PostRequest extends FormRequest
             "title" => "required|string",
             "content" => "required",
         ];
-        if ($this->mode == 'add')
+        if ($this->mode == 'create')
         {
             $rules["hero"] = "required|mimes:webp,jpg,jpeg,png|image|max:2048";
             $rules["meta_data"] = "array|min:1";

@@ -4,12 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Tag extends Model
+/**
+ * @method static orderBy(string $string)
+ */
+class Event extends Model
 {
     use HasFactory;
     // * Config
-    protected $table = "tags";
+    protected $table = "events";
     protected $primaryKey = "id";
 
     // * Mass Assignment
@@ -28,15 +32,8 @@ class Tag extends Model
     // * Relationships
     protected $with = [];
 
-    // public function posts()
-    // {
-    //     return $this->hasManyThrough(Posts::class, "tags_posts");
-    // }
-    public function posts()
+    public function posts(): BelongsToMany
     {
-        return $this->belongsToMany(Post::class, "tags_posts");
+        return $this->belongsToMany(Post::class, "events_posts");
     }
-
-    // * Methods
-
 }

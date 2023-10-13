@@ -13,7 +13,6 @@ import { useToast } from "vue-toastification";
 const toast = useToast();
 
 const props = defineProps(["tags", "post", "mode"]);
-// console.log(props.post);
 const form = useForm({
   mode: props.mode,
   title: null,
@@ -23,7 +22,7 @@ const form = useForm({
   tags: [],
   is_published: null,
 });
-if (props.mode == "edit") {
+if (props.mode === "edit") {
   form.title = props.post.title;
   form.content = props.post.content;
   form.meta_data = JSON.parse(props.post.meta_data);
@@ -124,6 +123,9 @@ const addTag = function () {
       <li><a :href="route('home')">Home</a></li>
       <li><Link :href="route('dashboard')">Dashboard</Link></li>
     </template>
+    <pre>
+      {{form.errors}}
+    </pre>
     <h1 class="text-3xl underline underline-offset-8 text-center mb-8">
       Create A New Blog Post
     </h1>
@@ -146,7 +148,7 @@ const addTag = function () {
             @input="form.hero = $event.target.files[0]"
           />
           <InputError :message="form.errors.hero" />
-          <img v-if="heroURL" :src="heroURL" class="my-6" />
+          <img v-if="heroURL" :src="heroURL" class="my-6"  alt="banner"/>
         </div>
         <div class="mt-6">
           <InputLabel value="Blog Content" class="text-xl underline underline-offset-8" />
